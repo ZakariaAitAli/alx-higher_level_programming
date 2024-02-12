@@ -8,8 +8,10 @@ import sys
 
 class TestRectangle(unittest.TestCase):
 
-	def test_id_generation(self):
+	def setUp(self):
+		Rectangle.reset_id()
 
+	def test_id_generation(self):
 		r1 = Rectangle(10, 2, id=1)
 		r2 = Rectangle(2, 10, id=2)
 		r3 = Rectangle(10, 2, 0, 0, 12)
@@ -74,6 +76,13 @@ class TestRectangle(unittest.TestCase):
 		printed_output = captured_output.getvalue()
 		expected_output = "##\n##\n"
 		self.assertEqual(printed_output, expected_output)
+
+	def test_str_representation(self):
+		r1 = Rectangle(4, 6, 2, 1, 12)
+		self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 4/6")
+
+		r2 = Rectangle(5, 5, 1)
+		self.assertEqual(str(r2), "[Rectangle] (1) 1/0 - 5/5")
 
 if __name__ == '__main__':
 	unittest.main()
