@@ -84,5 +84,28 @@ class TestRectangle(unittest.TestCase):
 		r2 = Rectangle(5, 5, 1)
 		self.assertEqual(str(r2), "[Rectangle] (1) 1/0 - 5/5")
 
+	def test_display(self):
+		captured_output = StringIO()
+		sys.stdout = captured_output
+
+		r1 = Rectangle(2, 3, 2, 2)
+		r1.display()
+
+		sys.stdout = sys.__stdout__
+		printed_output = captured_output.getvalue()
+		expected_output = "\n\n  ##\n  ##\n  ##\n"
+		self.assertEqual(printed_output, expected_output)
+
+		captured_output = StringIO()
+		sys.stdout = captured_output
+
+		r2 = Rectangle(3, 2, 1, 0)
+		r2.display()
+
+		sys.stdout = sys.__stdout__
+		printed_output = captured_output.getvalue()
+		expected_output = " ###\n ###\n"
+		self.assertEqual(printed_output, expected_output)
+		
 if __name__ == '__main__':
 	unittest.main()
