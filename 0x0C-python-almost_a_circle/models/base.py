@@ -4,6 +4,7 @@
 
 """Base class"""
 
+
 class Base:
     """Base class"""
     __nb_objects = 0
